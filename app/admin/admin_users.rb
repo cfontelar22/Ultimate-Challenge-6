@@ -1,6 +1,12 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
+
+  # Define ransackable attributes
+  def self.ransackable_attributes(auth_object = nil)
+    ['id', 'email', 'current_sign_in_at', 'sign_in_count', 'created_at']
+  end
+
   index do
     selectable_column
     id_column
@@ -24,5 +30,4 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end
-
 end
