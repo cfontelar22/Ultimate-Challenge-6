@@ -1,10 +1,16 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
+  controller do
+    # Define ransackable attributes
+    def self.ransackable_attributes(auth_object = nil)
+      ['id', 'email', 'current_sign_in_at', 'sign_in_count', 'created_at']
+    end
 
-  # Define ransackable attributes
-  def self.ransackable_attributes(auth_object = nil)
-    ['id', 'email', 'current_sign_in_at', 'sign_in_count', 'created_at']
+    # Optional: Customize ransack search context
+    def search_configuration
+      { attributes: ['id', 'email', 'current_sign_in_at', 'sign_in_count', 'created_at'] }
+    end
   end
 
   index do
