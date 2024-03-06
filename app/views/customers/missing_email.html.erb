@@ -1,0 +1,14 @@
+<!-- app/views/customers/missing_email.html.erb -->
+
+<h1>Customers with Missing Email Addresses</h1>
+
+<div class="customer-container">
+  <% if @customers.any? %>
+    <%= render partial: 'customer', collection: @customers %>
+  <% else %>
+    <p>No customers are missing email addresses.</p>
+  <% end %>
+</div>
+
+<%= link_to 'All Customers', customers_path %> |
+<%= link_to 'Alphabetized', alphabetized_customers_path %> |

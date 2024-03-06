@@ -1,9 +1,16 @@
+
 <div class="customer">
-  <%= image_tag customer.image.url if customer.image.attached? %>
+  <% if customer.image.attached? %>
+    <%= image_tag rails_blob_path(customer.image, only_path: true) %>
+  <% end %>
   <div class="customer-details">
     <h3><%= customer.full_name %></h3>
     <p><strong>Phone:</strong> <%= customer.phone_number %></p>
-    <p><strong>Email:</strong> <%= customer.email.present? ? customer.email : 'N/A' %></p>
+    <% if customer.email.present? %>
+      <p><strong>Email:</strong> <%= customer.email %></p>
+    <% else %>
+      <p><strong>Email:</strong> N/A</p>
+    <% end %>
     <p><strong>Notes:</strong> <%= customer.notes %></p>
   </div>
 </div>
